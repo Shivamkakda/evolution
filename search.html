@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+ #sidebar{
+     width: 200px;
+ }       
+#mainContainer{
+    display: grid;
+    width: 80%;
+    grid-template-columns: repeat(4, 23%);
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin-top: 60px;
+    padding: 20px 0;
+    background-color: rgb(241, 241, 241);
+}
+#main{
+    display: grid;
+    grid-template-columns: 15% 80%;
+
+}
+.divss{
+    display: grid;
+    grid-template-columns: repeat(2,40%);
+
+}
+.text1{
+    font-size: 24px;
+    font-weight: bolder;
+}
+.abs{
+    width: 400px;
+    height: 250px;
+}
+input{
+    width: 100px;
+    overflow: hidden;
+}
+    </style>
+</head>
+<body>
+    <div id="main">
+        <div id="sideBar">
+            <span onclick="home()">
+                <img style="width: 60px;" src="https://techcrunch.com/wp-content/themes/techcrunch-2017/images/opengraph-default.png"/>
+                <p style="font-size: 22px; font-weight: bolder; color: yellow;">Join Tech Crunch+ </p>
+                <p style="font-size: 22px; font-weight: bolder;">Login </p>
+            </span>
+            <span>
+                <img style="width: 35px;" src="https://img.icons8.com/ios/2x/search--v5.gif"/>
+                <input oninput="debounce(main,3000)" type="text" id="newss" placeholder=" search" >
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Disrupt</p>
+            </span>
+            <span>
+           
+                <p style="font-size: 22px; font-weight: bolder;">Startups</p>
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Videos</p>
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Audio</p>
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Newsletters</p>
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Advertise</p>
+            </span>
+            <span>
+                <p style="font-size: 22px; font-weight: bolder;">Events</p>
+            </span>
+       </div>
+       <div id="newss"></div>
+        </div>
+        </div>
+    </div>
+</body>
+</html>
+<script src="search.js"></script>
