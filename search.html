@@ -41,6 +41,13 @@ input{
     width: 100px;
     overflow: hidden;
 }
+#searchResults{
+            display: none;
+            flex-direction: column;
+            overflow: scroll;
+            height: 220px;
+            width: 100%;
+        }
     </style>
 </head>
 <body>
@@ -78,8 +85,15 @@ input{
                 <p style="font-size: 22px; font-weight: bolder;">Events</p>
             </span>
        </div>
-       <div id="newss"></div>
+       <div id="searchEng">
+        <input style="width: 100%; margin: 20px 0;" type="text" id="searchBox" placeholder="search.." oninput="searchString(1000)">
+        <div id="searchResults">
+
         </div>
+    </div>
+    <div id="container">
+
+    </div>
         </div>
     </div>
 </body>

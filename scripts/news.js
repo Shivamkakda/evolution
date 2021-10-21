@@ -1,69 +1,47 @@
-// 58c6e916637340c19f07e094ae3f4f9b
-//GET https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=API_KEY
-let maincontainer = document.getElementById("main")
-
-async function newsDataAPI(){
-    let res = await fetch(`https://newsapi.org/v2/everything?q=india&from=2021-09-18&sortBy=publishedAt&apiKey=58c6e916637340c19f07e094ae3f4f9b`);
-    let data = await res.json();
-    console.log(data);
-    showNews(data);
+function home(){
+    window.location.href = "home.html";
 }
-newsDataAPI();
-function showNews(data1){
-    maincontainer.innerHTML = null;
+function shoeFullNews(){
+    let parrent = document.getElementById("container");
+    parrent.innerHTML = null;
+
+    let data2 = JSON.parse(localStorage.getItem("news"));
+    data2.articles.forEach(({title, author, publishedAt, urlToImage, content}) => {
     
-    data1.articles.forEach((newsdata ) =>{
+        let wrapper = document.createElement("div");
+        wrapper.setAttribute("class", "wrapper");
+        
         let div = document.createElement("div");
-        div.setAttribute("class","divss")
+        let heading = document.createElement("h1");
+        heading.textContent = title;
+        div.append(heading);
 
-        let div2 = document.createElement("div")
+        let div2 = document.createElement("div");
+        let authorName = document.createElement("p");
+        authorName.style.fontWeight = "bold";
+        authorName.textContent = author;
 
-            let  des = document.createElement("p")
-            des.innerHTML =  newsdata.description
-            des.setAttribute("class","text1")
+        let date = document.createElement("p");
+        date.textContent = publishedAt;
+        div2.append(authorName, date);
 
-            let date = document.createElement("p")
-            date.innerHTML = newsdata.publishedAt
+        let div3 = document.createElement("div");
+        let img  = document.createElement("img");
+        img.src = urlToImage;
+        div3.append(img);
 
-            div2.append(des,date)
+        let div4 = document.createElement("div");
+        let discription = document.createElement("p");
+        discription.style.fontSize = "20px";
+        discription.style.letterSpacing = "1px";
+        discription.textContent = content;
+        div4.append(discription);
 
-        let div1 = document.createElement("div");
-       
-         let img = document.createElement("img")
-         img.src = newsdata.urlToImage;
-         img.setAttribute("class","abs")
+        wrapper.append(div, div2, div3, div4);
 
-         let name = document.createElement("p")
-            name.innerHTML= newsdata.title
-
-            div1.append(img,name);
-            div.append(div2,div1)
-            div.onclick = function(){
-               location.href = newsdata.html;
-              }
-      
-        maincontainer.append(div)
-    })
-}
-let cont = document.getElementById("searchbar")
-async function newssearch(){
-    var title = document.getElementById("title")
-    let res = await fetch(`https://newsapi.org/v2/everything?q=${title}&apiKey=58c6e916637340c19f07e094ae3f4f9b`);
-    let data = await res.json();
-    console.log(data);
-    showSearch(data);
-}
-newssearch();
-
-function showSearch(data1){
-    cont.innerHTML = null;
-    
-    data1.articles.forEach((newsdata2 ) =>{
-        let div = document.createElement("div");
-        div.setAttribute("class","divss")
-        let name = document.createElement("p")
-            name.innerHTML= newsdata.title
-        div.append(name);
-        cont.append(div)
+        parrent.append(wrapper);
     });
+        
 }
+
+shoeFullNews();

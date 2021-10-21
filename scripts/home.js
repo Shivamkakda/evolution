@@ -1,9 +1,13 @@
 // 58c6e916637340c19f07e094ae3f4f9b
 //GET https://newsapi.org/v2/everything?q=Apple&from=2021-10-18&sortBy=popularity&apiKey=API_KEY
+
+function home(){
+    window.location.href = "home.html";
+}
 let maincontainer = document.getElementById("mainBox")
 
 async function newsDataAPI(){
-    let res = await fetch(`https://newsapi.org/v2/everything?q=india&from=2021-09-18&sortBy=publishedAt&apiKey=58c6e916637340c19f07e094ae3f4f9b`);
+    let res = await fetch(`https://newsapi.org/v2/everything?q=us&apiKey=58c6e916637340c19f07e094ae3f4f9b`);
     let data = await res.json();
     console.log(data);
     showNews(data);
@@ -39,15 +43,85 @@ function showNews(data1){
             div1.append(img,name);
             div.append(div2,div1)
             div.onclick = function(){
-               window.location.href = "newsdata.html";
+                showFullResult(data1)
               }
       
         maincontainer.append(div)
     })
 }
-function searchs(){
-    window.location.href = "search.html"
+
+async function makeSearch(query){
+    // query = document.getElementById("searchBox").value;
+    let res = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2021-10-18&sortBy=popularity&apiKey=a763c91642a9436fbfca86d0e7e81c99`);
+    let data = await res.json();
+    console.log("Data: ", data.articles);
+    showResult(data.articles, query);
 }
-function home(){
-    window.location.href = "unit3evealution.html"
+
+// makeSearch();
+var modal = document.getElementById("searchResults")
+var span = document.getElementsByClassName("close")[0]
+
+function searrch(){
+        modal.style.display = "block";
+}
+span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+let searchInterval = null;
+
+function searchString(delay){
+    let  query = document.getElementById("searchBox").value;
+    let searchResults = document.getElementById ("searchResults");
+    if(query.length < 1){
+        searchResults.style.display = "none";
+    }
+    else{
+        searchResults.style.display = "flex";
+    }
+    if(searchInterval !== null){
+        clearTimeout(searchInterval);
+    }
+
+    searchInterval = setTimeout(function(){
+        makeSearch(query);
+    }, delay)
+}
+
+function showResult(articles, query){
+    let parrent = document.getElementById("searchResults");
+    parrent.innerHTML = null;
+
+    articles.forEach(({title}, ele) => {
+        let div = document.createElement("div");
+        div.setAttribute("class", "searchWrapper");
+        let titleName = document.createElement("p");
+        titleName.textContent = title;
+        div.append(titleName);
+        div.onclick = function(){
+            showFullResult(query);
+        }
+        parrent.append(div);
+    });
+}
+
+function showFullResult(query){
+    console.log("hi");
+    if(localStorage.getItem("news") === null){
+        localStorage.setItem("news", JSON.stringify([]));
+    }
+    else{
+        localStorage.setItem("news", JSON.stringify([]));
+    }
+
+    let arr = JSON.parse(localStorage.getItem("news"));
+
+    arr.push(query);
+
+    // console.log(arr);
+
+    localStorage.setItem("news", JSON.stringify(arr));
+
+    window.location.href = "search.html";
 }
