@@ -44,6 +44,7 @@ function showNews(data1){
             div.append(div2,div1)
             div.onclick = function(){
                 showFullResult(data1)
+                window.location.href="news.html"
               }
       
         maincontainer.append(div)
@@ -52,7 +53,7 @@ function showNews(data1){
 
 async function makeSearch(query){
     // query = document.getElementById("searchBox").value;
-    let res = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2021-10-18&sortBy=popularity&apiKey=a763c91642a9436fbfca86d0e7e81c99`);
+    let res = await fetch(`https://newsapi.org/v2/everything?q=${query}&from=2021-10-18&sortBy=popularity&apiKey=58c6e916637340c19f07e094ae3f4f9b`);
     let data = await res.json();
     console.log("Data: ", data.articles);
     showResult(data.articles, query);

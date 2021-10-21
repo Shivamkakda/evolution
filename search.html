@@ -24,23 +24,13 @@
     grid-template-columns: 15% 80%;
 
 }
-.divss{
-    display: grid;
-    grid-template-columns: repeat(2,40%);
-
-}
-.text1{
-    font-size: 24px;
-    font-weight: bolder;
-}
-.abs{
-    width: 400px;
-    height: 250px;
-}
-input{
-    width: 100px;
-    overflow: hidden;
-}
+#container{
+            width: 50%;
+            margin: 25px  auto;
+        }
+        #container img{
+            width: 100%;
+        }
 #searchResults{
             display: none;
             flex-direction: column;
@@ -85,17 +75,16 @@ input{
                 <p style="font-size: 22px; font-weight: bolder;">Events</p>
             </span>
        </div>
-       <div id="searchEng">
+       <div id="container"></div>
+    </div>
+    <div id="searchEng">
         <input style="width: 100%; margin: 20px 0;" type="text" id="searchBox" placeholder="search.." oninput="searchString(1000)">
         <div id="searchResults">
 
         </div>
     </div>
-    <div id="container">
-
-    </div>
         </div>
     </div>
 </body>
 </html>
-<script src="search.js"></script>
+<script src="/scripts/serach.js"></script>
